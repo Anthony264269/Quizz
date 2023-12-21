@@ -1,5 +1,5 @@
 <?php
-require_once("./connexion.php")
+require_once("./connexion.php");
 
  $request = $database->query('SELECT * FROM user');
  $stats = $request->fetchAll();
@@ -7,6 +7,7 @@ require_once("./connexion.php")
 
  foreach ($stats as $stat) { 
 
-   <br> echo $stats['stat'] :  echo $stats['pseudo']<br/>
+   echo $stats['stat'];
+   echo $stats['pseudo'];
 
 }
