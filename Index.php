@@ -51,8 +51,8 @@ session_start();
                                     Stats général
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-
+                                    
+                                   <?php include_once('./bdd/page_stats.php')?>
 
 
                                 </ul>
