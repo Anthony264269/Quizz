@@ -7,7 +7,6 @@ require_once("./connexion.php");
 
  foreach ($stats as $stat) { 
 
-   echo $stat['stat'];
-   echo $stat['pseudo'];
+   echo '<p>'. $stat['pseudo'] . ' : ' . $stat['stat'] . '</p>';
 
 }
