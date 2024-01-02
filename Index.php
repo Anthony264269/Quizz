@@ -1,5 +1,7 @@
 <?php
 require_once('./connexion.php');
+include_once('./bdd/questionnaire.php');
+include_once('./bdd/questions_reponse.php');
 session_start();
 
 //var_dump($_SESSION);
@@ -94,14 +96,41 @@ session_start();
         <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
             <section class="container md">
                 <div class="d-flex justify-content-center pt-5">
-                    <div id="bg_quizz" class="card" style="width: 38rem; height: 28rem;">
+                    <div id="bg_quizz" class="card" style="width: 40rem; height: 21rem;">
                         <div class="card-body">
-                            <h5 class="card-title d-flex justify-content-center fs-2">Question:</h5>
+                            <h5 class="card-title d-flex justify-content-center fs-3 text-danger">
 
-                            <a id="A" href="#" class="btn btn-primary">A</a>
-                            <a id="B" href="#" class="btn btn-primary">B</a>
-                            <a id="C" href="#" class="btn btn-primary">C</a>
-                            <a id="D" href="#" class="btn btn-primary">D</a>
+                                <?php {
+                                    echo ($questions[0]);
+                                } ?>
+
+
+                            </h5>
+
+
+
+
+
+                            <div class=" d-flex justify-content-around pt-5">
+                                <a id="A" href="#" class="btn btn-primary">
+                                    <?php
+                                    echo ($reponses[0]['reponse']); ?>
+                                </a>
+                                <a id="B" href="#" class="btn btn-primary">
+                                    <?php
+                                    echo ($reponses[1]['reponse']); ?>
+                                </a>
+                            </div>
+                            <div class=" d-flex justify-content-around pt-5">
+                                <a id="C" href="#" class="btn btn-primary">
+                                    <?php
+                                    echo ($reponses[2]['reponse']); ?>
+                                </a>
+                                <a id="D" href="#" class="btn btn-primary">
+                                    <?php
+                                    echo ($reponses[3]['reponse']); ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
