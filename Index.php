@@ -3,7 +3,7 @@ require_once('./connexion.php');
 include_once('./bdd/questionnaire.php');
 include_once('./bdd/questions_reponse.php');
 session_start();
-
+//commentaire à supprimer 
 //var_dump($_SESSION);
 ?>
 
