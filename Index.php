@@ -19,13 +19,14 @@ session_start();
 </head>
 
 <body>
+    
     <video autoplay muted loop id="myVideo" class="md">
         <source src="./Rainbow_Nebula_4K_Motion_Background.mp4" type="video/mp4">
     </video>
     <header>
         <nav class="navbar navbar-dark bg-transparent fixed-top pt-0 md">
             <div class="container-fluid">
-                <a class="navbar-brand fs-2 mr-0">Quizz</a>
+                <a class="navbar-brand fs-2 mr-0">QUIZZ</a>
                 <div>
 
                     <a class="md navbar-brand fs-2">Stats</a>
