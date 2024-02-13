@@ -1,7 +1,9 @@
 <?php
 require_once('./connexion.php');
+include_once('./bdd/questionnaire.php');
+include_once('./bdd/questions_reponse.php');
 session_start();
-
+//commentaire à supprimer 
 //var_dump($_SESSION);
 ?>
 
@@ -17,32 +19,39 @@ session_start();
 </head>
 
 <body>
+    
+    <video autoplay muted loop id="myVideo" class="md">
+        <source src="./Rainbow_Nebula_4K_Motion_Background.mp4" type="video/mp4">
+    </video>
     <header>
-        <nav class="navbar navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-dark bg-transparent fixed-top pt-0 md">
             <div class="container-fluid">
-                <a class="navbar-brand fs-2">Quizz</a>
-                <a class="navbar-brand fs-2">Stats</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <a class="navbar-brand fs-2 mr-0">QUIZZ</a>
+                <div>
+
+                    <a class="md navbar-brand fs-2">Stats</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="offcanvas offcanvas-end text-bg-dark md" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Stats</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <div class="offcanvas-body md">
+                        <ul class="navbar-nav flex-grow-1 pe-3">
                             <li class="nav-item">
                                 <p class="nav-link active">Mes stats</p>
-                                <p>Pseudo : <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
-                                    echo $_SESSION['user']['pseudo'];
-                                }
-                                ?>
+                                <p>Pseudo : <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+                                                echo $_SESSION['user']['pseudo'];
+                                            }
+                                            ?>
                                 </p>
-                                <p>score : <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
-                                    echo $_SESSION['user']['stat'];
-                                }
-                                ?>
+                                <p>score : <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+                                                echo $_SESSION['user']['stat'];
+                                            }
+                                            ?>
                                 </p>
                             </li>
 
@@ -51,8 +60,8 @@ session_start();
                                     Stats général
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    
-                                   <?php include_once('./bdd/page_stats.php')?>
+
+                                    <?php include_once('./bdd/page_stats.php') ?>
 
 
                                 </ul>
@@ -61,7 +70,7 @@ session_start();
                         <!-- si le gars est connecté -->
                         <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                             echo '<a href="./bdd/deconnexion_utilisateur.php" class="btn btn-danger"> Deconnexion</a>';
-                        }//echo je fais apparaitre le bouton déconnexion, quand je rentre mon pseudo et que je valide
+                        } //echo je fais apparaitre le bouton déconnexion, quand je rentre mon pseudo et que je valide
                         //bien le dire dans la page deconnexion-utilisateur
                         ?>
                     </div>
@@ -70,16 +79,17 @@ session_start();
         </nav>
     </header>
 
-    <main>//
+    <main>
         <?php if (!isset($_SESSION['user']) || empty($_SESSION['user'])) { ?>
-            <section class="container md pt-5 w-25 d-flex justify-content-center">
-                <form action="./bdd/pseudo.php" method="POST">
-                    <div class="mb-3">
-                        <label for="pseudo" class="form-label">Pseudo</label>
-                        <input type="text" class="form-control" id="pseudo" name="pseudo">
+            <section class="container md pt-5 mr-0 ml-0">
+                <form action="./bdd/pseudo.php" method="post">
+                    <div id="bg_pseudo" class="card-body" style="width: 38rem; height: 28rem;">
+                        <div id="bouton">
+                            <label for="pseudo" class="form-label">Pseudo</label>
+                            <input type="text" class="form-control w-25 opacity-25" id="pseudo" name="pseudo">
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-
             </section>
         <?php } ?>
 
@@ -87,15 +97,41 @@ session_start();
         <?php if (isset($_SESSION['user']) && !empty($_SESSION['user'])) { ?>
             <section class="container md">
                 <div class="d-flex justify-content-center pt-5">
-                    <div class="d-flex"></div>
-                    <div class="card bg-light" style="width: 38rem; height: 28rem;">
+                    <div id="bg_quizz" class="card" style="width: 40rem; height: 21rem;">
                         <div class="card-body">
-                            <h5 class="card-title d-flex justify-content-center fs-2">Question:</h5>
+                            <h5 class="card-title d-flex justify-content-center fs-3 text-danger">
 
-                            <a id="A" href="#" class="btn btn-primary">A</a>
-                            <a id="B" href="#" class="btn btn-primary">B</a>
-                            <a id="C" href="#" class="btn btn-primary">C</a>
-                            <a id="D" href="#" class="btn btn-primary">D</a>
+                                <?php {
+                                    echo ($questions[0]);
+                                } ?>
+
+
+                            </h5>
+
+
+
+
+
+                            <div class=" d-flex justify-content-around pt-5">
+                                <a id="A" href="#" class="btn btn-primary">
+                                    <?php
+                                    echo ($reponses[0]['reponse']); ?>
+                                </a>
+                                <a id="B" href="#" class="btn btn-primary">
+                                    <?php
+                                    echo ($reponses[1]['reponse']); ?>
+                                </a>
+                            </div>
+                            <div class=" d-flex justify-content-around pt-5">
+                                <a id="C" href="#" class="btn btn-primary">
+                                    <?php
+                                    echo ($reponses[2]['reponse']); ?>
+                                </a>
+                                <a id="D" href="#" class="btn btn-primary">
+                                    <?php
+                                    echo ($reponses[3]['reponse']); ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +142,8 @@ session_start();
 
 
 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </html>
