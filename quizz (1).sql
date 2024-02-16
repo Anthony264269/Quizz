@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `question` (
   `id` int NOT NULL,
   `question` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `question`
@@ -57,7 +57,7 @@ CREATE TABLE `reponse` (
   `reponse` varchar(255) NOT NULL,
   `right_answer` tinyint(1) NOT NULL,
   `question_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `reponse`
@@ -107,7 +107,7 @@ CREATE TABLE `user` (
   `id` int NOT NULL,
   `stat` int NOT NULL,
   `pseudo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Dumping data for table `user`
